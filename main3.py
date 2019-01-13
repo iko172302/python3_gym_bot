@@ -20,17 +20,17 @@ now = datetime.datetime.now()
 
 # ~ #Greeting to user
 print(
-	"Hello, you must love computers AND staying healthy!"
-	"\nOnly a crazy python programmer would use python to stay healty!")
+      "Hello, you must love computers AND staying healthy!"
+      "\nOnly a crazy python programmer would use python to stay healty!")
 	
 #Prompts for user name. 
 user_name = input("\nWhat's your name?" " ")
 
 #Greeting to user using the now aquired user name. 
 print(
-	"\nWelcome " +user_name.title()+ 
-	" to Champ's Python Workout Logger!"
-	"\nYou can type quit at any time to exit the program" )
+     "\nWelcome " +user_name.title()+ 
+     " to Champ's Python Workout Logger!"
+     "\nYou can type quit at any time to exit the program" )
 
 #Champ's Gym Bot waking up! 
 def bot_wake_up():
@@ -45,9 +45,9 @@ Thread(target = bot_wake_up()).start()
 
 #Greeting continued...
 print(
-	  "\nTo enter your exercises please enter one at a time!\n"
-	  "\nWe will go through each one and add sets, reps & weight!\n"
-	  "\n**Don't worry it's super easy - your a programmer!**\n")
+     "\nTo enter your exercises please enter one at a time!\n"
+     "\nWe will go through each one and add sets, reps & weight!\n"
+     "\n**Don't worry it's super easy - your a programmer!**\n")
 
 def exercise_logging():
 	"""Function to store exercise, sets, reps and weight in a dict."""	
@@ -56,10 +56,10 @@ def exercise_logging():
 		print("       " " ENTER EXERCISES" "         ")
 		print("--------------------------------------")
 		exercise = input(
-						"\nWhat exercises did you do today? Or type quit"
-						" to get your WORKOUT SUMMARY!" 
-						"\nEnter the exercise then press enter"
-						" to continue------->" " ")
+				"\nWhat exercises did you do today? Or type quit"
+				" to get your WORKOUT SUMMARY!" 
+				"\nEnter the exercise then press enter"
+				" to continue------->" " ")
 		if 'quit' in exercise: 
 			break
 		
@@ -74,22 +74,22 @@ def exercise_logging():
 		print("        "  " ENTER REPS" "           ")
 		print("-------------------------------------")
 		reps = input(
-					"\n**Now, please enter the reps for each set.**\n"
-					"\nFor example enter 8 8 10 10 (notice the spaces)."
-					"\nThis would mean you did 8 reps for first set..."
-					"2nd...3rd...and finally" 
-					" 10 for your 4th set.------->" " ")
+			     "\n**Now, please enter the reps for each set.**\n"
+			     "\nFor example enter 8 8 10 10 (notice the spaces)."
+			     "\nThis would mean you did 8 reps for first set..."
+			     "2nd...3rd...and finally" 
+			     " 10 for your 4th set.------->" " ")
 		if 'quit' in reps:
 			break
 		print("-------------------------------------")
 		print("      "  "ENTER WEIGHT LIFTED" "     ")
 		print("-------------------------------------")
 		weight = input(
-					  "\n**Now, enter the weight for each set in the same"
-					  " manner 50 80 90 100 (notice the spaces).**\n"
-					  "\nThis would mean you lifted 50lbs for your 1st" 
-					  " set...2nd...3rd..."
-					  "\nand finally 100lbs for your 4th set------->" " ")
+			      "\n**Now, enter the weight for each set in the same"
+			      " manner 50 80 90 100 (notice the spaces).**\n"
+			      "\nThis would mean you lifted 50lbs for your 1st" 
+			      " set...2nd...3rd..."
+			      "\nand finally 100lbs for your 4th set------->" " ")
 		if 'quit' in weight: 
 			break
 	  #Stores user exercsie inputs into a dict 
@@ -115,8 +115,8 @@ def workout_summary():
 	print("             " "WORKOUT SUMMARY" "       ")
 	print("-----------------------------------------")
 	print(
-		 "\n<<<<<Good job " +user_name.title()+ 
-		 ", you completed the following exercises>>>>> \n")
+	     "\n<<<<<Good job " +user_name.title()+ 
+	     ", you completed the following exercises>>>>> \n")
 	
 		 
 	for key in user_exercise_list:
@@ -140,12 +140,12 @@ def workout_summary():
 	print("** " +str(user_sets_total2)+ " **")	
 	#Tell you user total amount of reps in their workout
 	print(
-		 "\nYou pumped put a total of ** " +str(user_reps_total2)+ 
-		 " ** reps!")	  
+	     "\nYou pumped put a total of ** " +str(user_reps_total2)+ 
+	     " ** reps!")	  
 	##Tell user total amount of weight lifted during workout.
 	print(
-		 "\nHoly crap you lifted ** " +str(user_weights_total2)+ 
-		 " ** pounds during your workout - great job!")
+	     "\nHoly crap you lifted ** " +str(user_weights_total2)+ 
+	     " ** pounds during your workout - great job!")
 		 		 
 		 
 def storing():
@@ -178,11 +178,11 @@ def storing():
 		
 		
 		ud_1.write("\nYou completed ** "
-					+str(user_sets_total2)+ " ** total sets.\n")			
+			  +str(user_sets_total2)+ " ** total sets.\n")			
 		ud_1.write("\nYou completed ** " 
-					+str(user_reps_total2)+ " ** total reps.\n")				
+			  +str(user_reps_total2)+ " ** total reps.\n")				
 		ud_1.write("\nYou lifted ** " 
-					+str(user_weights_total2)+ " ** total pounds.\n")
+			  +str(user_weights_total2)+ " ** total pounds.\n")
 		
 		
 	print("\n--------------------------------------")
