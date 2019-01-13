@@ -1,4 +1,8 @@
+"""This is a pyhthon Gym logger! Allows user to enter unlimited exercises, sets, reps and weight and outputs
+the total sets, total reps, total weight and creates a .txt file to save the date for the user"""
 
+"""I would like to update it to grab th previous stats from the last log and manipulate that data for 
+user goals i.e. 'Great job you lifted xxxxx pounds more than last time!' But, I'm still new to that"""
 
 import time
 from threading import Thread
