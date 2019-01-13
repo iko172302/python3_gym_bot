@@ -3,6 +3,7 @@
 import time
 from threading import Thread
 import datetime
+from operator import mul
 
 
 #Dict, lists, filename, variables for the program.
@@ -13,7 +14,7 @@ user_weights = []
 filename = 'user_data.txt'
 now = datetime.datetime.now()
 
-#Greeting to user
+# ~ #Greeting to user
 print(
 	"Hello, you must love computers AND staying healthy!"
 	"\nOnly a crazy python programmer would use python to stay healty!")
@@ -30,11 +31,10 @@ print(
 #Champ's Gym Bot waking up! 
 def bot_wake_up():
 	time.sleep(1)
-	print("\nHold on let me let me wake up!...It's too early for this...")
+	print("------------------------------------------------")
+	print("     " " NOW ENTERING GYM BOT BEAST MODE" "     ")
+	print("------------------------------------------------")
 	time.sleep(1)
-	print("-------------------------------------------------------------")
-	print("           " " NOW ENTERING GYM BOT BEAST MODE" "           ")
-	print("-------------------------------------------------------------")
 	
 Thread(target = bot_wake_up()).start()
 
@@ -48,9 +48,9 @@ print(
 def exercise_logging():
 	"""Function to store exercise, sets, reps and weight in a dict."""	
 	while True:
-		print("-------------------------------------------------------")
-		print("           "       " ENTER EXERCISES" "                ")
-		print("-------------------------------------------------------")
+		print("--------------------------------------")
+		print("       " " ENTER EXERCISES" "         ")
+		print("--------------------------------------")
 		exercise = input(
 						"\nWhat exercises did you do today? Or type quit"
 						" to get your WORKOUT SUMMARY!" 
@@ -59,16 +59,16 @@ def exercise_logging():
 		if 'quit' in exercise: 
 			break
 		
-		print("-------------------------------------------------------")
-		print("           "       " ENTER TOTAL SETS" "               ")
-		print("-------------------------------------------------------")
-		sets = input("\n**How many sets did you do?**-------->" " " )
+		print("--------------------------------------")
+		print("        " "ENTER TOTAL SETS" "        ")
+		print("--------------------------------------")
+		sets = input("\n**How many sets did you do?" " ")
 		if 'quit' in sets:
 			break
 			
-		print("-------------------------------------------------------")
-		print("           "       " ENTER REPS" "                     ")
-		print("-------------------------------------------------------")
+		print("-------------------------------------")
+		print("        "  " ENTER REPS" "           ")
+		print("-------------------------------------")
 		reps = input(
 					"\n**Now, please enter the reps for each set.**\n"
 					"\nFor example enter 8 8 10 10 (notice the spaces)."
@@ -77,9 +77,9 @@ def exercise_logging():
 					" 10 for your 4th set.------->" " ")
 		if 'quit' in reps:
 			break
-		print("-------------------------------------------------------")
-		print("           "       "ENTER WEIGHT LIFTED" "            ")
-		print("-------------------------------------------------------")
+		print("-------------------------------------")
+		print("      "  "ENTER WEIGHT LIFTED" "     ")
+		print("-------------------------------------")
 		weight = input(
 					  "\n**Now, enter the weight for each set in the same"
 					  " manner 50 80 90 100 (notice the spaces).**\n"
@@ -93,55 +93,54 @@ def exercise_logging():
 		
 	  #Converts a multi-numbered user input 'string' into integers,
 	  #Stores the input in the appropriate list for later outsput summary. 	  
-		for y in sets:
-			sets1 = sets.split()
-   
-		for x in sets1:
-			sets2 = int(x)
-			user_sets.append(sets2)
+		user_sets1 = list(map(int, sets.split()))
+		user_sets.append(user_sets1)
 		
-		for y in reps:
-			reps1 = reps.split()
-   
-		for x in reps1:
-			reps2 = int(x)
-			user_reps.append(reps2)
 		
-		for y in weight:
-			weight1 = weight.split()
-   
-		for x in weight1:
-			weight2 = int(x)
-			user_weights.append(weight2)
-			
-			
+		user_reps1 = list(map(int, reps.split()))
+		user_reps.append(user_reps1)
+		
+		
+		user_weights1 = list(map(int, weight.split()))
+		res = list(map(mul, user_reps1, user_weights1))
+		user_weights.append(res)
 		
 def workout_summary():
 	"""Outputs a WORKOUT SUMMARY to the user!"""
-	print("\n--------------------------------------------------")
-	print("\n           " "WORKOUT SUMMARY" "                ")
-	print("\n--------------------------------------------------")
+	print("-----------------------------------------")
+	print("             " "WORKOUT SUMMARY" "       ")
+	print("-----------------------------------------")
 	print(
 		 "\n<<<<<Good job " +user_name.title()+ 
 		 ", you completed the following exercises>>>>> \n")
+	
+		 
 	for key in user_exercise_list:
 		print("** " +key.title()+ " **")
+		
+	#Calculates all data sets, reps, wieght lifted 	
+	user_reps_total1 = sum(user_reps, [])
+	user_reps_total2 = sum(user_reps_total1)
+		
+    		
+	user_sets_total1 = sum(user_sets, [])
+	user_sets_total2 = sum(user_sets_total1)
 	
-											
-	user_reps_total = sum(user_reps)
-	user_weights_total = sum(user_weights)
-	user_set_total = sum(user_sets)	
 	
+	user_weights_total1 = sum(user_weights, [])
+	user_weights_total2 = sum(user_weights_total1)
+
+				
 	#Tell user total amount of sets completed in wokout
-	print("\nYou completed the following total number of sets: ")	
-	print("** " +str(user_set_total)+ " **")	
+	print("\nYou completed the following total number of sets: \n")	
+	print("** " +str(user_sets_total2)+ " **")	
 	#Tell you user total amount of reps in their workout
 	print(
-		 "\nYou pumped put a total of ** " +str(user_reps_total)+ 
+		 "\nYou pumped put a total of ** " +str(user_reps_total2)+ 
 		 " ** reps!")	  
-	#Tell user total amount of weight lifted during workout.
+	##Tell user total amount of weight lifted during workout.
 	print(
-		 "\nHoly crap you lifted ** " +str(user_weights_total)+ 
+		 "\nHoly crap you lifted ** " +str(user_weights_total2)+ 
 		 " ** pounds during your workout - great job!")
 		 
 		 
@@ -154,9 +153,7 @@ def storing():
 		
 	with open(filename, 'a') as ud_1:
 		
-		ud_1.write("***NEW WORKOUT LOG ENTRY***" +str(now)+ "\n")
-		
-		
+		ud_1.write("***NEW WORKOUT LOG ENTRY***" +str(now)+ "\n")		
 		ud_1.write("\nYou completed the following exercsies: \n")
 		
 		for key in user_exercise_list:
@@ -164,32 +161,34 @@ def storing():
 				   
 	with open (filename, 'a') as ud_1:
 		
-		# ~ filename.write("\n".join(user_exercise_list))
-		user_sets_total = sum(user_sets)
-		user_reps_total = sum(user_reps)
-		user_weights_total = sum(user_weights)
+		user_reps_total1 = sum(user_reps, [])
+		user_reps_total2 = sum(user_reps_total1)
+			
+    		
+		user_sets_total1 = sum(user_sets, [])
+		user_sets_total2 = sum(user_sets_total1)
+		
+	
+		user_weights_total1 = sum(user_weights, [])
+		user_weights_total2 = sum(user_weights_total1)
+		
+		
 		
 		ud_1.write("\nYou completed ** "
-				   +str(user_sets_total)+ " ** total sets.\n")
-			
+					+str(user_sets_total2)+ " ** total sets.\n")			
 		ud_1.write("\nYou completed ** " 
-				   +str(user_reps_total)+ " ** total reps.\n")	
-			
+					+str(user_reps_total2)+ " ** total reps.\n")				
 		ud_1.write("\nYou lifted ** " 
-				   +str(user_weights_total)+ " ** total pounds.\n")
+					+str(user_weights_total2)+ " ** total pounds.\n")
 		
 		
-	print("\n--------------------------------------------------")
-	print("\n           " "WORKOUT SUMMARY" "                 ")
-	print("\n               "   "FOR"  "                     ")
-	print("\n              " +user_name.upper()+ "               ")
-	print("\n           " "RECORED & STORED" "                 ")
-	print("\n--------------------------------------------------")					  
+	print("\n--------------------------------------")
+	print("\n         " "WORKOUT SUMMARY" "        ")
+	print("\n               " "FOR" "              ")
+	print("\n         " +user_name.upper()+ "      ")
+	print("\n         " "RECORED & STORED" "       ")
+	print("\n--------------------------------------")					  
 	
-		
-		
-
-
 
 #Call for functions to run program
 exercise_logging()
