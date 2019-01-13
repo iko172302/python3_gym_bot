@@ -142,8 +142,7 @@ def workout_summary():
 	print(
 		 "\nHoly crap you lifted ** " +str(user_weights_total2)+ 
 		 " ** pounds during your workout - great job!")
-		 
-		 
+		 		 
 		 
 def storing():
 	"""Store the workout summary in a text file. Every time the user
